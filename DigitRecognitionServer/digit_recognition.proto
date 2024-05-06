@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package digitrecognition;
+
+// The digit recognition service definition.
+service DigitRecognitionService {
+    // Sends an image and receives a prediction result
+    rpc SendImage (ImageRequest) returns (PredictionResult);
+}
+
+// The request message containing the image.
+message ImageRequest {
+    string image = 1; // Base64-encoded image
+}
+
+// The response message containing the prediction result.
+message PredictionResult {
+    string predicted_label = 1;
+    repeated float probability_distribution = 2;
+}
